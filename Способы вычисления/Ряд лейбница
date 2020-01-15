@@ -1,0 +1,21 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args) {
+        Scanner in=new Scanner(System.in);
+        double Pi=Math.PI,myPi=0;
+        int k=2;
+        long n =1_000_000_000*100_000_000;
+        for (int i = 0; i < n; i++) {
+            myPi+=4.0/(i*2+1)*(i%2==0?1:-1);
+        }
+        //myPi+=0.000999999749999;//это если n=1000
+        String smyPi=String.valueOf(myPi);
+        String sPi=String.valueOf(Pi);
+        while (true){
+            if(k==smyPi.length()||k==17||smyPi.charAt(k)!=sPi.charAt(k))break;
+            k++;
+        }
+        System.out.println(Pi+"\n"+myPi);
+        System.out.println("Совпадает знаков:"+(k-2));//рекорд - 9
+    }
+}

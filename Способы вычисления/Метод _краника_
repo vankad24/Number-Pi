@@ -1,0 +1,59 @@
+
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        StringBuilder pi = new StringBuilder(n);
+        int unchecked=0;
+        int[] remainders = new int[10*n/3];
+        for (int i = 0; i < remainders.length; i++) {
+            remainders[i]=2;
+        }
+        for (int i = 0; i < n; i++) {
+            int carriedOver = 0, sum = 0;
+            for (int j = remainders.length - 1; j >= 0; j--) {
+                remainders[j]*=10;
+                sum=remainders[j]+carriedOver;
+                int quotient = sum / (j * 2 + 1);
+                remainders[j] = sum % (j * 2 + 1); 
+                carriedOver = quotient * j;   
+            }
+            remainders[0] = sum % 10;
+            int q = sum / 10;
+            if (q == 9) {
+                unchecked++;
+            } else if (q == 10) {
+                q = 0;
+                for (int k = 1; k <= unchecked; k++) {
+                    int replaced = Integer.parseInt(pi.substring(i - k, i - k + 1));
+                    if (replaced == 9) {
+                        replaced = 0;
+                    } else {
+                        replaced++;
+                    }
+                    pi.deleteCharAt(i - k);
+                    pi.insert(i - k, replaced);
+                }
+                unchecked = 1;
+            } else {
+                unchecked = 1;
+            }
+            pi.append(q);
+        }
+        if (pi.length()>1)
+            pi.insert(1,".");
+        if (pi.length()==1)
+            pi.replace(0,1,"3");
+
+        int k = 0;
+        String smyPi=pi.toString();
+        String sPi="3.141592653589793238462643383279502884197169399375105820974944592307816406286208998";
+                while (true){
+            if(k==smyPi.length()||k==sPi.length()||smyPi.charAt(k)!=sPi.charAt(k))break;
+            k++;
+        }
+        System.out.println(sPi+"\n"+pi);
+        System.out.println("Совпадает знаков:"+(k-1));//любое количество
+    }
+}

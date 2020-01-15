@@ -1,0 +1,26 @@
+
+
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args) {
+        Scanner in=new Scanner(System.in);
+        double Pi=Math.PI,myPi=1.0,nom=2, denom=1;
+        int k=2;
+        long n =1000000000;
+        for (int i = 1; i < n; i++) {
+            myPi*=nom/denom;
+            //System.out.println(nom+"/"+denom);
+            if(i%2==0)nom+=2;
+            if((i+1)%2==0)denom+=2;
+        }
+        myPi*=2;
+        String smyPi=String.valueOf(myPi);
+        String sPi=String.valueOf(Pi);
+        while (true){
+            if(k==smyPi.length()||k==17||smyPi.charAt(k)!=sPi.charAt(k))break;
+            k++;
+        }
+        System.out.println(Pi+"\n"+myPi);
+        System.out.println("Совпадает знаков:"+(k-2));//рекорд - 8
+    }
+}
