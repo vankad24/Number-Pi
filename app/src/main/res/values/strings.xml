@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Number Pi</string>
+    <string name="hint">Введите нужную точность</string>
+    <string name="go">Вычислить</string>
+    <string name="stop">Остановить</string>
+    <string name="description">Здесь будет выведено число <i>Пи</i> с введенным количеством знаков после запятой.</string>
+</resources>

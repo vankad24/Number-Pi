@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="@string/hint"
+        android:id="@+id/numbers"
+        android:layout_marginTop="25sp"
+        android:layout_centerHorizontal="true"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/lay"
+        android:layout_below="@id/numbers">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:id="@+id/start"
+        android:text="@string/go"
+        android:layout_gravity="center"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:id="@+id/stop"
+        android:text="@string/stop"
+        android:layout_gravity="center"
+        />
+
+
+</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/time"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/lay"/>
+    <ProgressBar
+        android:layout_width="70sp"
+        android:layout_height="70sp"
+        android:id="@+id/process"
+        android:layout_below="@id/time"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="20sp"
+        android:visibility="invisible"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/time">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pi"
+        android:textSize="30sp"
+        android:text="@string/description"
+        android:textColor="#1A1A1A"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textIsSelectable="true"
+        android:layout_marginRight="15sp"
+        android:layout_marginLeft="15sp"/>
+</ScrollView>
+
+
+</RelativeLayout>
