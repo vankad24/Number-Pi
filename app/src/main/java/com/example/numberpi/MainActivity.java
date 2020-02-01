@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.start:
                     try {
                         int entered = Integer.parseInt(numbers.getText().toString()) + 1;
-                        long maxNumber = 3*(Runtime.getRuntime().maxMemory()-21_000_000)/40;
+                        long maxNumber = 3*(long)(Runtime.getRuntime().maxMemory()*.84)/40;
                         if (entered>maxNumber){
                             timePassed.setText("Максимум - "+maxNumber);
                         }else if (!finished || numberOfDigits != entered) {
