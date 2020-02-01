@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
             hours=(values[0]/3600)%24;
             days = values[0]/86400;
             timePassed.setText("Примерно осталось: "+(days!=0?days+" дн ":"")+(hours!=0?hours+" ч ":"")+(minutes!=0&&days==0?minutes+" мин ":"")+(seconds!=0&&hours==0?seconds+" сек ":""));
+
         }
 
         @Override
@@ -101,13 +102,13 @@ public class MainActivity extends AppCompatActivity {
         protected void onCancelled(Void aVoid) {
             super.onCancelled(aVoid);
             if (pi != null)
-                finih();
+                finish();
 
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-          finih();
+          finish();
         }
     }
 
@@ -116,7 +117,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.start:
                     try {
                         int entered = Integer.parseInt(numbers.getText().toString()) + 1;
-                        if (entered<=8_000_001&&(!finished || numberOfDigits != entered)) {
+                        long maxNumber = 3*(Runtime.getRuntime().maxMemory()-21_000_000)/40;
+                        if (entered>maxNumber){
+                            timePassed.setText("Максимум - "+maxNumber);
+                        }else if (!finished || numberOfDigits != entered) {
                             numberOfDigits = entered;
                             progressBar.setVisibility(ProgressBar.VISIBLE);
                             timePassed.setText("");
@@ -130,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                                     task.execute();
                             }
                         }
-                        else timePassed.setText("Некорректный ввод");
+                        else timePassed.setText("Уже подсчитанно");
                     } catch (Exception e) {
                         timePassed.setText("Некорректный ввод");
                     }
@@ -140,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-    public void finih(){
+    public void finish(){
         if (pi.length()>1)
             pi.insert(1,".");
         if (pi.length()==1)
